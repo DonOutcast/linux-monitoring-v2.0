@@ -7,7 +7,6 @@ len_of_file_name=${#file_name}
 len_of_ext=${#ext_name}
 first_symbol=${file_name:0:1}
 log_date="$(date +"%d%m%y")"
-total_memmory=$(df -hk | awk 'NR==4{print $4}')
 if [[ $len_of_file_name -lt 4 ]]; then
         counter=$len_of_file_name
        while [[ $counter -lt 4  ]]; do
@@ -26,35 +25,35 @@ if [[ $len_of_ext -lt 3 ]]; then
 
 tmp=$file_name
 
- for(( i=1, j=0; j < $par_2; i++,j++ )) do
+ for(( l=1, k=0; k < $par_2; l++,k++ )) do
         if [[ $total_memmory -lt 1048576 ]]; then
                 echo "ERROR NO HAVE SPACE"
                 echo "ERROR NO HAVE SPACE [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]">>$script_path/log.txt
                 exit 1
          else
     
-                 if (( $i <= 240 ));
+                 if (( $l <= 240 ));
     then
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $par_6">>log.txt
        tmp+="${file_name: -1}"
-    elif (( $i > 240 && $i <= 480)); 
+    elif (( $l > 240 && $l <= 480)); 
     then
                 if (( $len_of_file_name < 2  )); then
                 echo "CREATED:FILE stoped becose is name so big">>log.txt
                 exit
                 fi
 
-            if (( $i == 241 )); 
+            if (( $l == 241 )); 
             then
                 tmp=${file_name:0:1}$first_symbol${file_name:1} 
             fi
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
        tmp=${tmp:0:1}$first_symbol${tmp:1}
-    elif (( $i > 480 && $i <= 640 )); 
+    elif (( $l > 480 && $l <= 640 )); 
     then
-        if (( $i == 481 ));
+        if (( $l == 481 ));
         then
             tmp=${file_name:0:1}$first_symbol$first_symbol${file_name:1} 
         fi
@@ -62,54 +61,54 @@ tmp=$file_name
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
         echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
         
-    elif (( $i > 640 && $i <= 880 ));
+    elif (( $l > 640 && $l <= 880 ));
     then
-     if (( $i == 641 ));
+     if (( $l == 641 ));
         then
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
         echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
-    elif (( $i > 880 && $i <= 1120));
+    elif (( $l > 880 && $l <= 1120));
     then
-         if (( $i == 881 ));
+         if (( $l == 881 ));
         then
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
         echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
-    elif (( $i > 1120 && $i <= 1360 ));
+    elif (( $l > 1120 && $l <= 1360 ));
     then
-        if (( $i == 1121 ));
+        if (( $l == 1121 ));
         then
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
         echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt   
-    elif (( $i > 1360 && $i <= 1600 ));
+    elif (( $l > 1360 && $l <= 1600 ));
     then
-        if (( $i == 1361 ));
+        if (( $l == 1361 ));
         then
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
         echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
-    elif (( $i > 1600 && $i <= 1840));
+    elif (( $l > 1600 && $l <= 1840));
     then
-    if (( $i == 1601 ));
+    if (( $l == 1601 ));
         then
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
        fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
         echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
-    elif (( $i > 1840 && $i <= 2080));
+    elif (( $l > 1840 && $l <= 2080));
     then
-        if (( $i == 1841 ));
+        if (( $l == 1841 ));
         then
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
