@@ -134,23 +134,26 @@ for (( i=1, j=0; j <$par_2; i++, j++ )) do
             if (( $i == 489)); then
                 folders_name=${tmp_name:0:1}$folders_first${tmp_name:1}
             fi
+            folders_name+="$(echo $last)"
             mkdir $Absolute_path"$folders_name"_"$date_create"
             echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
-            folders_name+="$(echo $last)"
+            cd "$Absolute_path"/"$folders_name"_"$date_create"
         elif (( $i > 732 && $i <= 976)); then
             if (( $i == 733)); then
                 folders_name=${tmp_name:0:1}$folders_first$folders_first${tmp_name:1}
             fi
+            folders_name+="$(echo $last)"
             mkdir $Absolute_path"$folders_name"_"$date_create"
             echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
-            folders_name+="$(echo $last)"
+            cd "$Absolute_path"/"$folders_name"_"$date_create"
         elif (( $i > 976 && $i <= 1220)); then
             if (( $i == 977)); then
                 folders_name=${tmp_name:0:1}$folders_first$folders_first$folders_first${tmp_name:1}
             fi
+            folders_name+="$(echo $last)"
             echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
             mkdir $Absolute_path"$folders_name"_"$date_create"
-            folders_name+="$(echo $last)"
+            cd "$Absolute_path"/"$folders_name"_"$date_create"
         fi
 tmp=$file_name
  for(( l=1, k=0; k < $par_2; l++,k++ )) do
@@ -176,8 +179,8 @@ tmp=$file_name
             then
                 tmp=${file_name:0:1}$first_symbol${file_name:1} 
             fi
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-      echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
        tmp=${tmp:0:1}$first_symbol${tmp:1}
     elif (( $l > 480 && $l <= 640 )); 
     then
@@ -186,8 +189,8 @@ tmp=$file_name
             tmp=${file_name:0:1}$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
         
     elif (( $l > 640 && $l <= 880 ));
     then
@@ -196,8 +199,8 @@ tmp=$file_name
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
     elif (( $l > 880 && $l <= 1120));
     then
          if (( $l == 881 ));
@@ -205,8 +208,8 @@ tmp=$file_name
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
     elif (( $l > 1120 && $l <= 1360 ));
     then
         if (( $l == 1121 ));
@@ -214,8 +217,8 @@ tmp=$file_name
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt   
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
     elif (( $l > 1360 && $l <= 1600 ));
     then
         if (( $l == 1361 ));
@@ -223,8 +226,8 @@ tmp=$file_name
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
     elif (( $l > 1600 && $l <= 1840));
     then
     if (( $l == 1601 ));
@@ -232,8 +235,8 @@ tmp=$file_name
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
     elif (( $l > 1840 && $l <= 2080));
     then
         if (( $l == 1841 ));
@@ -241,8 +244,8 @@ tmp=$file_name
             tmp=${file_name:0:1}$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol$first_symbol${file_name:1} 
         fi
         tmp+="${file_name: -1}"
-       fallocate -l $par_6 $Absolute_path/$tmp."$ext_name"_"$log_date"
-        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $tmp."$ext_name"_$log_date $6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
     fi
 fi
 done
