@@ -1,10 +1,5 @@
 #!/bin/bash
-par_1=$1
-par_2=$2
-par_3=$3
-par_4=$4
-par_5=$5
-par_6=$6
+function start_gen() {
 script_path=$(pwd)
 Absolute_path=$par_1
 cd "$Absolute_path"
@@ -57,15 +52,17 @@ for (( i=1, j=0; j <$par_2; i++, j++ )) do
             exit 1
     fi
         if (( $i <= 244 )); then
-            mkdir $Absolute_path"$folders_name"_"$date_create"
-            echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
             folders_name+="$(echo $last)"
+            mkdir "$Absolute_path"/"$folders_name"_"$date_create"
+            echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
+            cd "$Absolute_path"/"$folders_name"_"$date_create"
         elif (( $i > 244 && $i <= 488 )); then
             if (( $i == 245)); then
                 folders_name=$tmp_name
             fi
             mkdir $Absolute_path"$folders_name"_"$date_create"
             echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
+          
             folders_name=${folders_name:0:1}${folders_name}
         elif (( $i > 488 && $i <= 732)); then
             if (( $i == 489)); then
@@ -99,8 +96,8 @@ tmp=$file_name
     
                  if (( $l <= 240 ));
     then
-       fallocate -l $par_6 $Absolute_path/$folders_name/$tmp."$ext_name"_"$log_date"
-       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name/$tmp."$ext_name"_$log_date $par_6">>log.txt
+       fallocate -l $par_6 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_6">>$script_path/log.txt
        tmp+="${file_name: -1}"
     elif (( $l > 240 && $l <= 480)); 
     then
@@ -187,4 +184,4 @@ done
 
         fi
 done
-
+}

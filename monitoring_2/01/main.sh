@@ -9,3 +9,4 @@ check_arg_3 $par_3
 check_arg_4 $par_4
 check_arg_5 $par_5
 check_arg_6 $par_6
+start_gen $par_1 $par_2 $par_3 $par_4 $par_5 $par_6
