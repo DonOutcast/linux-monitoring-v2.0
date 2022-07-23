@@ -119,16 +119,17 @@ for (( i=1, j=0; j <$par_2; i++, j++ )) do
         if (( $i <= 244 )); then
             folders_name+="$(echo $last)"
             mkdir "$Absolute_path"/"$folders_name"_"$date_create"
-            echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
+     echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
             cd "$Absolute_path"/"$folders_name"_"$date_create"
         elif (( $i > 244 && $i <= 488 )); then
             if (( $i == 245)); then
                 folders_name=$tmp_name
             fi
+            folders_name=${folders_name:0:1}${folders_name}
             mkdir $Absolute_path"$folders_name"_"$date_create"
             echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $Absolute_path"$folders_name"_"$date_create"">>$script_path/log.txt
           
-            folders_name=${folders_name:0:1}${folders_name}
+            cd "$Absolute_path"/"$folders_name"_"$date_create"
         elif (( $i > 488 && $i <= 732)); then
             if (( $i == 489)); then
                 folders_name=${tmp_name:0:1}$folders_first${tmp_name:1}
