@@ -7,14 +7,14 @@ for ARG
 do
         let i++
 done
-if (( i != 3  )); then
+if (( i != 6  )); then
         echo "Too few parameters in bash need 6"
         exit 1
 fi
 }
 function check_arg_1() {
-        if  [[  -d $1 ]]; then
-             Absolute_path=$1   
+        if  [[  -d $par_1 ]]; then
+             Absolute_path=$par_1   
         else
                 echo "Is a not Absolute path"        
                 exit 1
@@ -24,37 +24,29 @@ function check_arg_1() {
 }
 
 function check_arg_2() {
-        if [[ $2 =~ $reg_for_count_folders_and_files  ]]; then
-                par_1=$2
-        else
-                echo "ERROR for count of folders"
+        if [[ ! $par_2 =~ $reg_for_count_folders_and_files  || (( $par_2 == 0 )) ]]; then
+                echo "ERROR for count of folders  $par_2"
                 exit 1
         fi
 }
 
 function check_arg_3() {
-        if [[ $3 =~ $reg_for_folder_name  ]]; then
-                par_3=$3
-        else
-               echo  "ERROR for folder name $1 "
+        if [[ ! $par_3 =~ $reg_for_folder_name  || (( $len_of_folder_name > 7  )) ]]; then
+               echo  "ERROR for folder name $par_3 "
                exit 1
         fi
 
 }
 
 function check_arg_4() {
-        if [[ $4 =~ $reg_for_coun_folders_and_diles  ]]; then
-                par_4=$4
-        else
+        if [[ ! $par_4 =~ $reg_for_count_folders_and_files  ]]; then
                 echo "ERROR for count of files"
                 exit 1
         fi
         }
 
 function check_arg_5() {
-        if [[ $5 =~ $reg_for_files_name   ]]; then
-                par_5=$5
-        else
+        if [[ ! $par_5 =~ $reg_for_files_name  ]]; then
                 echo "ERRRO for name of files"
                 exit 1
         fi
@@ -62,17 +54,12 @@ function check_arg_5() {
 }
 
 function check_arg_6() {
-        if [[ $6 =~ reg_for_file_size  ]]; then
-                par_6=$6
-                numbers_size=${#par_6}
-        if (( $numbers_size < 0 || $numbers_size > 101 )); then
+        numbers_size=${par_6%kb}
+        if [[ ! $par_6 =~ $reg_for_file_size ]]  || [[ $numbers_size -le 0 ]] || 
+                    [[ $numbers_size -gt  100  ]]; then
                 echo "ERROR for size"
                 exit 1
-        fi
-        else
-                echo "ERROR for file size"
-                exit 1
-        fi
+        fi        
 
 }
 
