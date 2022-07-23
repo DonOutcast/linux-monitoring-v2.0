@@ -1,6 +1,0 @@
-DIR: [23-07-22 17:25:37]  /home/outcast/linux-monitoring-v2.0/monitoring_2/01mersdd_230722
-CREATED:FILE [23-07-2022 17:25:37] /home/outcast/linux-monitoring-v2.0/monitoring_2/01/mersdd_230722/sham.txx_230722 5kb
-CREATED:FILE [23-07-2022 17:25:37] /home/outcast/linux-monitoring-v2.0/monitoring_2/01/mersdd_230722/shamm.txx_230722 5kb
-DIR: [23-07-22 17:25:37]  /home/outcast/linux-monitoring-v2.0/monitoring_2/01mersddd_230722
-CREATED:FILE [23-07-2022 17:25:37] /home/outcast/linux-monitoring-v2.0/monitoring_2/01/mersddd_230722/sham.txx_230722 5kb
-CREATED:FILE [23-07-2022 17:25:37] /home/outcast/linux-monitoring-v2.0/monitoring_2/01/mersddd_230722/shamm.txx_230722 5kb

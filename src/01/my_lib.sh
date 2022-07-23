@@ -155,8 +155,9 @@ for (( i=1, j=0; j <$par_2; i++, j++ )) do
             mkdir $Absolute_path"$folders_name"_"$date_create"
             cd "$Absolute_path"/"$folders_name"_"$date_create"
         fi
+        cd ..
 tmp=$file_name
- for(( l=1, k=0; k < $par_2; l++,k++ )) do
+ for(( l=1, k=0; k < $par_4; l++,k++ )) do
         if [[ $total_memmory -lt 1048576 ]]; then
                 echo "ERROR NO HAVE SPACE"
                 echo "ERROR NO HAVE SPACE [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]">>$script_path/log.txt
