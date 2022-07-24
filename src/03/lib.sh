@@ -39,7 +39,7 @@ function del_date_time {
     read -p "enter the end of the file search range to delete, date: " END_TIME
 
     echo "deleting files created from "$START_TIME" to "$END_TIME"..."
-    find / -newermt "$START_TIME" -not -newermt "$END_TIME" 2>/dev/null | xargs sudo rm -r 2>/dev/null
+    find / -newermt "$START_TIME" -not -newermt "$END_TIME" -regex '_[0-9]+$' -exec  sudo rm -rf {} \; 2>/dev/null
 }
 
 function del_name() {
