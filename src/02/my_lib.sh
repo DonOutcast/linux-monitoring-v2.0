@@ -8,7 +8,7 @@ do
         let i++
 done
 if (( i != 3  )); then
-        echo "Too few parameters in bash need 6"
+        echo "Too few parameters in bash need 3"
         exit 1
 fi
 }
@@ -44,7 +44,7 @@ function check_arg_3() {
 function start_gen() {
 script_path=$(pwd)
 
-list=$(compgen -d / | grep -v 'bin\|sbin\|proc\|sys')
+list=$(compgen -d / | grep -v 'bin\|sbin\|proc\|sys\|root')
 echo "$list">$script_path/paths.txt
 
 
@@ -99,7 +99,7 @@ for ((  j=0; j < $count_of_folders; j++ )) do
     fi
     random_path=$(shuf -n 1 $script_path/paths.txt)
             folders_name+="$(echo $last)"
-            mkdir "$random_path"/"$folders_name"_"$date_create"
+         sudo mkdir "$random_path"/"$folders_name"_"$date_create"
      echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $random_path/"$folders_name"_"$date_create"">>$script_path/log.txt
             cd "$random_path"/"$folders_name"_"$date_create"
           
@@ -112,7 +112,7 @@ tmp=$file_name
                 exit 1
          else
     
-       fallocate -l $par_3 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+    sudo fallocate -l $par_3 $random_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $random_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_3">>$script_path/log.txt
        tmp+="${file_name: -1}"
 fi
