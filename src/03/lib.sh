@@ -29,7 +29,7 @@ function check_arg_1() {
 }
 
 function del_log() {
-        echo "$name_of_files" | xargs rm -rf
+        echo "$name_of_files" | xargs sudo  rm -rf
 }
 
 function del_date_time {
@@ -39,14 +39,14 @@ function del_date_time {
     read -p "enter the end of the file search range to delete, date: " END_TIME
 
     echo "deleting files created from "$START_TIME" to "$END_TIME"..."
-    find / -newermt "$START_TIME" -not -newermt "$END_TIME" 2>/dev/null | sudo xargs rm -r 2>/dev/null
+    find / -newermt "$START_TIME" -not -newermt "$END_TIME" 2>/dev/null | xargs sudo rm -r 2>/dev/null
 }
 
 function del_name() {
 
     echo "deleting files and directorys with mask = $name_mask..."
-    find / -type f -name "*$name_of_files*" 2>/dev/null | sudo xargs rm -r 2>/dev/null
-    find / -type d -name "*$name_of_files*" 2>/dev/null | sudo xargs rm -r 2>/dev/null
+    find / -type f -name "*$name_of_files*" 2>/dev/null | xargs sudo rm -r 2>/dev/null
+    find / -type d -name "*$name_of_files*" 2>/dev/null | xargs sudo  rm -r 2>/dev/null
 }
 
 function start_clear() {
