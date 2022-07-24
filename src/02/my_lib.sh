@@ -87,7 +87,7 @@ if [[ $len_of_ext -lt 3 ]]; then
 count_of_folders=$(shuf -i 0-100 -n1)
 
 for ((  j=0; j < $count_of_folders; j++ )) do
-        total_memmory=$(df -h | awk 'NR==4{print $4}')
+        total_memmory=$(df / -BM | awk '{print $4}' | tail -n 1 | cut -d 'M' -f1)
         if [[ $total_memmory -lt 1024 ]]; then
                 echo "ERROR NO HAVE SPACE"
                 echo "ERROR NO HAVE SPACE TO FOLDERS [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]">>$script_path/log.txt
@@ -99,11 +99,10 @@ for ((  j=0; j < $count_of_folders; j++ )) do
     fi
     random_path=$(shuf -n 1 $script_path/paths.txt)
             folders_name+="$(echo $last)"
-            # mkdir "$random_path"/"$folders_name"_"$date_create"
+            mkdir "$random_path"/"$folders_name"_"$date_create"
      echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $random_path/"$folders_name"_"$date_create"">>$script_path/log.txt
-            # cd "$random_path"/"$folders_name"_"$date_create"
+            cd "$random_path"/"$folders_name"_"$date_create"
           
-        # cd ..
 count_of_files=$(shuf -i 0-100 -n1)
 tmp=$file_name
  for((  k=0; k < $count_of_files; k++ )) do
@@ -113,11 +112,12 @@ tmp=$file_name
                 exit 1
          else
     
-       # fallocate -l $par_3 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
+       fallocate -l $par_3 $Absolute_path/$folders_name"_"$date_create/$tmp."$ext_name"_"$log_date"
        echo "CREATED:FILE [$(date +"%d-%m-%Y") $(date +"%H:%M:%S")] $random_path/$folders_name"_"$date_create/$tmp."$ext_name"_$log_date $par_3">>$script_path/log.txt
        tmp+="${file_name: -1}"
 fi
 done
         fi
+        cd ..
 done
 }
