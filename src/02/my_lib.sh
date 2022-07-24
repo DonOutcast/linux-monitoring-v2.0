@@ -100,14 +100,14 @@ for ((  j=0; j < $count_of_folders; j++ )) do
     random_path=$(shuf -n 1 $script_path/paths.txt)
             folders_name+="$(echo $last)"
             # mkdir "$random_path"/"$folders_name"_"$date_create"
-     echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $random_path"$folders_name"_"$date_create"">>$script_path/log.txt
+     echo "DIR: [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]  $random_path/"$folders_name"_"$date_create"">>$script_path/log.txt
             # cd "$random_path"/"$folders_name"_"$date_create"
           
         # cd ..
 count_of_files=$(shuf -i 0-100 -n1)
 tmp=$file_name
  for((  k=0; k < $count_of_files; k++ )) do
-        if [[ $total_memmory -lt 1048576 ]]; then
+        if [[ $total_memmory -lt 1024 ]]; then
                 echo "ERROR NO HAVE SPACE"
                 echo "ERROR NO HAVE SPACE [$(date +"%d-%m-%y") $(date +"%H:%M:%S")]">>$script_path/log.txt
                 exit 1
