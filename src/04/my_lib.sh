@@ -44,6 +44,11 @@ function gen_codes() {
         echo -n $RANDOM
         echo -n " \"-\" "
 }
+
+function gen_agents() {
+        echo "\"$(shuf -n1 agents.txt)\""
+}
+
 function generation_logs() {
     script_path=$(pwd)
     day_of_log=$(date +%d)
